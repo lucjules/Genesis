@@ -339,9 +339,11 @@ G.scenes.trek = {
     const W = G.W, H = G.H, t = G.time, cfg = this.cfg;
     let hg = c.createLinearGradient(0, 0, 0, 120); hg.addColorStop(0, 'rgba(10,4,0,.5)'); hg.addColorStop(1, 'rgba(10,4,0,0)'); c.fillStyle = hg; c.fillRect(0, 0, W, 120);
     hg = c.createLinearGradient(0, H - 150, 0, H); hg.addColorStop(0, 'rgba(10,4,0,0)'); hg.addColorStop(1, 'rgba(10,4,0,.5)'); c.fillStyle = hg; c.fillRect(0, H - 150, W, 150);
+    // panneaux sombres sous les indicateurs (lisibilité sur le sable clair)
+    c.fillStyle = 'rgba(12,5,1,.42)'; c.fillRect(28, 22, 210, cfg.waterDrain ? 74 : 34); c.fillRect(W - 312, 22, 284, 114);
     // eau
     if (cfg.waterDrain) {
-      G.text(c, 'EAU', 40, 44, { size: 11, ls: 5, color: '#c9b894' });
+      G.text(c, 'EAU', 40, 44, { size: 11, ls: 5, color: '#f3e6cc' });
       c.fillStyle = 'rgba(234,220,196,.18)'; c.fillRect(40, 54, 150, 3);
       c.fillStyle = this.water < 25 ? '#d9553a' : '#a8d4ff'; c.fillRect(40, 54, 150 * this.water / 100, 3);
       G.text(c, 'ÉPICE  ' + this.spice, 40, 82, { size: 11, ls: 5, color: '#d9a05b' });
@@ -351,11 +353,11 @@ G.scenes.trek = {
       const tgt = cfg.islands[cfg.path[this.nextTarget()]], dx = tgt.x - this.px, dy = tgt.y - this.py, d = Math.hypot(dx, dy);
       const a = Math.atan2(dy, dx), sx = this.px - this.camX, sy = this.py - this.camY;
       if (d > 220) { c.save(); c.translate(sx + Math.cos(a) * 92, sy + Math.sin(a) * 92); c.rotate(a); c.fillStyle = this.blind ? 'rgba(170,200,255,.55)' : 'rgba(246,220,174,.6)'; c.beginPath(); c.moveTo(9, 0); c.lineTo(-5, -6); c.lineTo(-2, 0); c.lineTo(-5, 6); c.closePath(); c.fill(); c.restore(); }
-      G.text(c, (this.blind ? 'LA DUNE LOINTAINE' : 'PROCHAIN REFUGE') + '  ' + Math.round(d / 10) + ' M', W / 2, 40, { size: 11, ls: 5, align: 'center', color: this.blind ? '#8fa6d0' : '#c9b894' });
+      G.text(c, (this.blind ? 'LA DUNE LOINTAINE' : 'PROCHAIN REFUGE') + '  ' + Math.round(d / 10) + ' M', W / 2, 40, { size: 11, ls: 5, align: 'center', color: this.blind ? '#8fa6d0' : '#f3e6cc' });
     }
     // rythme
-    const bx = W - 300, by = H - 80, att = this.att;
-    G.text(c, this.worm ? 'SHAI-HULUD APPROCHE' : 'ÉCOUTE DU DÉSERT', bx, by - 20, { size: 11, ls: 5, color: this.worm || att > 0.7 ? '#ff7a55' : '#c9b894' });
+    const bx = W - 300, by = 78, att = this.att;
+    G.text(c, this.worm ? 'SHAI-HULUD APPROCHE' : 'ÉCOUTE DU DÉSERT', bx, by - 20, { size: 11, ls: 5, color: this.worm || att > 0.7 ? '#ff7a55' : '#f3e6cc' });
     c.fillStyle = 'rgba(234,220,196,.16)'; c.fillRect(bx, by - 10, 260, 3);
     const col = A.mix([246, 220, 174], [255, 80, 46], clamp(att * 1.3, 0, 1));
     c.fillStyle = A.rgba(col); c.fillRect(bx, by - 10, 260 * clamp(att, 0, 1), 3);

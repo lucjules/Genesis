@@ -150,17 +150,18 @@ G.scenes.thopter = {
   },
   drawHud(c) {
     const W = G.W, H = G.H, prog = clamp(this.camX / LEN, 0, 1);
+    c.fillStyle = 'rgba(12,5,1,.4)'; c.fillRect(28, 22, 150, 56); c.fillRect(W / 2 - 240, 14, 480, 42); c.fillRect(28, H - 62, 150, 40);
     // progression
     c.fillStyle = 'rgba(234,220,196,.25)'; c.fillRect(W / 2 - 220, 38, 440, 2);
     c.fillStyle = '#d9a05b'; c.fillRect(W / 2 - 220, 38, 440 * prog, 2);
     c.fillStyle = '#f1dcb8'; c.beginPath(); c.arc(W / 2 - 220 + 440 * prog, 39, 4, 0, TAU); c.fill();
-    G.text(c, 'TEMPÊTE', W / 2 - 220, 28, { size: 10, ls: 5, color: '#c9b894' });
-    G.text(c, 'ABRI', W / 2 + 220, 28, { size: 10, ls: 5, align: 'right', color: '#c9b894' });
+    G.text(c, 'TEMPÊTE', W / 2 - 220, 28, { size: 10, ls: 5, color: '#f3e6cc' });
+    G.text(c, 'ABRI', W / 2 + 220, 28, { size: 10, ls: 5, align: 'right', color: '#f3e6cc' });
     // coque
-    G.text(c, 'COQUE', 40, 44, { size: 11, ls: 5, color: '#c9b894' });
+    G.text(c, 'COQUE', 40, 44, { size: 11, ls: 5, color: '#f3e6cc' });
     for (let i = 0; i < 4; i++) { c.fillStyle = i < this.hull ? '#e8d2ad' : 'rgba(234,220,196,.15)'; c.save(); c.translate(48 + i * 26, 62); c.rotate(Math.PI / 4); c.fillRect(-7, -7, 14, 14); c.restore(); }
     // élan
-    G.text(c, 'ÉLAN', 40, H - 46, { size: 11, ls: 5, color: '#c9b894' });
+    G.text(c, 'ÉLAN', 40, H - 46, { size: 11, ls: 5, color: '#f3e6cc' });
     c.fillStyle = 'rgba(234,220,196,.18)'; c.fillRect(40, H - 34, 120, 3);
     c.fillStyle = this.dashCd <= 0 ? '#f6dcae' : '#a8825a'; c.fillRect(40, H - 34, 120 * (1 - this.dashCd / 3.2), 3);
   },
