@@ -109,8 +109,10 @@ function onFirst() {
 }
 function toggleFullscreen() {
   try {
-    if (document.fullscreenElement) document.exitFullscreen();
-    else if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen();
+    let pr = null;
+    if (document.fullscreenElement) pr = document.exitFullscreen();
+    else if (document.documentElement.requestFullscreen) pr = document.documentElement.requestFullscreen();
+    if (pr && pr.catch) pr.catch(() => {});
   } catch (err) { /* plein écran indisponible */ }
 }
 window.addEventListener('keydown', (e) => {

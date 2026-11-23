@@ -135,7 +135,7 @@ G.scenes.ride = {
     void msg;
   },
   setupKeep(d, keepH, keepL, keepT) {
-    G.clearSubs(); this.setup(); this.destroyed = d; this.thump = null;
+    G.clearSubs(); this.setup(); G.clearSubs(); this.destroyed = d; this.thump = null;
     // on reprend directement sur le ver, objectifs déjà détruits conservés
     if (this.cfg.mount) {
       this.state = 'ride'; const w = makeWorm(this.px, this.py, 0.3, 62, 42); w.speed = 245; this.worm = w; this.hist = null;
